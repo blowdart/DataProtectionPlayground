@@ -1,0 +1,45 @@
+{
+    "webroot": "wwwroot",
+    "userSecretsId": "aspnet5-WebConfiguration-6348b97a-81f1-4197-8162-e4019b16cb44",
+    "version": "1.0.0-*",
+
+    "dependencies": {
+        "Microsoft.AspNet.Mvc": "6.0.0-beta6",
+        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta6",
+        "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
+        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-beta6",
+        "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta6",
+        "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta6",
+        "Microsoft.Framework.Configuration.Json": "1.0.0-beta6",
+        "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta6",
+        "Microsoft.Framework.Logging": "1.0.0-beta6",
+        "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
+        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta6",
+        "Microsoft.AspNet.DataProtection": "1.0.0-beta6"
+    },
+
+    "commands": {
+        "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+        "ef": "EntityFramework.Commands"
+    },
+
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": { }
+    },
+
+    "exclude": [
+        "wwwroot",
+        "node_modules",
+        "bower_components"
+    ],
+    "publishExclude": [
+        "node_modules",
+        "bower_components",
+        "**.xproj",
+        "**.user",
+        "**.vspscc"
+    ]
+}
