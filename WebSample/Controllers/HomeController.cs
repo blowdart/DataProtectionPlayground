@@ -1,11 +1,10 @@
 ﻿using System;
-
-using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.DataProtection;
-using WebConfiguration.Models;
+using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Routing;
+using WebSample.Models;
 
-namespace WebConfiguration.Controllers
+namespace WebSample.Controllers
 {
     public class HomeController : Controller
     {
@@ -20,7 +19,6 @@ namespace WebConfiguration.Controllers
         {
             return View(model);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -38,7 +36,8 @@ namespace WebConfiguration.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Unprotect(ProtectionData model)
         {
-            try {
+            try
+            {
                 if (!string.IsNullOrEmpty(model.CipherText))
                 {
                     model.PlainText = _protector.Unprotect(model.CipherText);
@@ -52,11 +51,6 @@ namespace WebConfiguration.Controllers
                 return View("Index", model);
             }
 
-        }
-
-        public IActionResult Error()
-        {
-            return View("~/Views/Shared/Error.cshtml");
         }
     }
 }

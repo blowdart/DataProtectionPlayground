@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebConfiguration.Models
+namespace WebSample.Models
 {
     public class ProtectionData
     {
