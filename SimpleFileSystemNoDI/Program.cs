@@ -13,14 +13,14 @@ namespace DataProtectionPlayGround
             const string appName = "SimpleFileSystemNoDI";
             const string purpose = "Demonstration";
 
-            var programKeyStore = 
+            var programKeyStore =
                 Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                     $"{keyStore}\\{appName}");
             Console.WriteLine($"Keys stored in\n{programKeyStore}");
 
             // instantiate the data protection system at this folder
-            var dataProtectionProvider = new DataProtectionProvider(new DirectoryInfo(programKeyStore), 
+            var dataProtectionProvider = new DataProtectionProvider(new DirectoryInfo(programKeyStore),
                 options =>
                 {
                     options.SetApplicationName(appName);

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataProtectionPlayGround")]
+[assembly: AssemblyTitle("SimpleFileSystemNoDI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DataProtectionPlayGround")]
+[assembly: AssemblyProduct("SimpleFileSystemNoDI")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("dd0f826c-bd0c-43bc-b183-cf175235f455")]
+[assembly: Guid("bec48665-9fd5-4724-9f54-98f1da1e4bcd")]
 
 // Version information for an assembly consists of the following four values:
 //

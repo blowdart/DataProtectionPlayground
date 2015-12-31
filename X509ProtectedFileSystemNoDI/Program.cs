@@ -23,10 +23,10 @@ namespace X509ProtectedFileSystemNoDI
             // Don't hardcode certificate passwords!
             // Certificate was generated with
             // makecert -r -pe -n "CN=Data Protection" -b 07/01/2015 -e 07/01/2020 -sky exchange -eku 1.3.6.1.4.1.311.10.3.12 -ss my
-            
+
             var encryptingCertificate = new X509Certificate2(
-                "protectionCertificate.pfx", 
-                "password", 
+                "protectionCertificate.pfx",
+                "password",
                 X509KeyStorageFlags.UserKeySet | X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
 
             // You must put the cert in the store for unprotect to work. This is a limitation of the EncryptedXml class used to store the cert.
@@ -36,14 +36,14 @@ namespace X509ProtectedFileSystemNoDI
             store.Close();
 
             // instantiate the data protection system at this folder
-            var dataProtectionProvider = new DataProtectionProvider(new DirectoryInfo(programKeyStore), 
+            var dataProtectionProvider = new DataProtectionProvider(new DirectoryInfo(programKeyStore),
                 options =>
-                    {
-                        // As we're using a self signed certificate we need to provide an instance of the certificate.
-                        // Thumb-print look-ups are restricted to "valid" certs (i.e. ones chained to a trusted root and which haven't expired)
-                        options.ProtectKeysWithCertificate(encryptingCertificate);
-                        options.SetApplicationName(appName);
-                    }
+                {
+                    // As we're using a self signed certificate we need to provide an instance of the certificate.
+                    // Thumb-print look-ups are restricted to "valid" certs (i.e. ones chained to a trusted root and which haven't expired)
+                    options.ProtectKeysWithCertificate(encryptingCertificate);
+                    options.SetApplicationName(appName);
+                }
                 );
 
             var protector = dataProtectionProvider.CreateProtector(purpose);

@@ -1,6 +1,5 @@
-﻿using System;
-
-using Microsoft.AspNet.DataProtection;
+﻿using Microsoft.AspNet.DataProtection;
+using System;
 
 namespace InMemoryStore
 {
@@ -12,6 +11,10 @@ namespace InMemoryStore
 
             // instantiate the data protection system at this folder
             var dataProtectionProvider = new EphemeralDataProtectionProvider();
+
+            var fileSystem = new FileSystemXmlRepository("c:\arse",);
+            var fileSystemDataProtectionProvider = new IPersistedDataProtector
+
 
             var protector = dataProtectionProvider.CreateProtector(purpose);
             Console.Write("Enter input: ");
