@@ -12,10 +12,6 @@ namespace InMemoryStore
             // instantiate the data protection system at this folder
             var dataProtectionProvider = new EphemeralDataProtectionProvider();
 
-            var fileSystem = new FileSystemXmlRepository("c:\arse",);
-            var fileSystemDataProtectionProvider = new IPersistedDataProtector
-
-
             var protector = dataProtectionProvider.CreateProtector(purpose);
             Console.Write("Enter input: ");
             string input = Console.ReadLine();
