@@ -19,21 +19,33 @@ namespace X509ProtectedFileSystemNoDI
                     $"{keyStore}\\{appName}");
             Console.WriteLine($"Keys stored in\n{programKeyStore}");
 
-            // Normally you'd have the certificate in the user certificate store, this is just for demo purposes.
-            // Don't hardcode certificate passwords!
             // Certificate was generated with
             // makecert -r -pe -n "CN=Data Protection" -b 07/01/2015 -e 07/01/2020 -sky exchange -eku 1.3.6.1.4.1.311.10.3.12 -ss my
 
-            var encryptingCertificate = new X509Certificate2(
-                "protectionCertificate.pfx",
-                "password",
-                X509KeyStorageFlags.UserKeySet | X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+            var certificateStore = new X509Store(StoreLocation.CurrentUser);
+            certificateStore.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
 
-            // You must put the cert in the store for unprotect to work. This is a limitation of the EncryptedXml class used to store the cert.
-            var store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            store.Open(OpenFlags.ReadWrite);
-            store.Add(encryptingCertificate);
-            store.Close();
+            var encryptingCertificates = 
+                certificateStore.Certificates.Find(
+                    X509FindType.FindBySubjectDistinguishedName, 
+                    "CN=Data Protection", 
+                    false); // Must be false for self signed certs.
+
+            certificateStore.Close();
+
+            if (encryptingCertificates == null || encryptingCertificates.Count == 0)
+            {
+                Console.WriteLine("Couldn't find the encryption certificate.");
+                Environment.Exit(-1);
+            }
+
+            var encryptingCertificate = encryptingCertificates[0];
+
+            if (encryptingCertificate.PrivateKey == null)
+            {
+                Console.WriteLine("No private key available.");
+                Environment.Exit(-1);
+            }
 
             // instantiate the data protection system at this folder
             var dataProtectionProvider = new DataProtectionProvider(new DirectoryInfo(programKeyStore),
@@ -57,11 +69,6 @@ namespace X509ProtectedFileSystemNoDI
             // unprotect the payload
             string unprotectedPayload = protector.Unprotect(protectedPayload);
             Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
-
-            // Clean up certificate store.
-            store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            store.Open(OpenFlags.ReadWrite);
-            store.Remove(encryptingCertificate);
 
             Console.ReadLine();
         }
