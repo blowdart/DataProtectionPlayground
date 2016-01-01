@@ -9,7 +9,7 @@ namespace DpapiProtectedFileSystemNoDi
         static void Main(string[] args)
         {
             const string keyStore = "dataProtectionSamples";
-            const string appName = "SimpleFileSystemNoDI";
+            const string appName = "DPAPIProtectedfSimpleFileSystemNoDI";
             const string purpose = "Demonstration";
 
             var programKeyStore =
